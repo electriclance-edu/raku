@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
+    <title>raku</title>
+  </head>
+  <body onload="onload()">
+    <div class="tiles" id="tiles">
+    </div>
+    <div class="notifBox">
+      <p>Hello.</p>
+    </div>
+    <div class="tools">
+      <p class="colorWhite">tesuto</p>
+      <div class="circleBox">
+        <div class="colorWhite borderJet" onclick="Player.selectBuildTile(this,'air')"></div>
+        <div class="colorJet borderWhite" onclick="Player.selectBuildTile(this,'ground')"></div>
+        <div class="colorBlue" onclick="Player.selectBuildTile(this,'water')"></div>
+        <div class="colorRed" onclick="Player.selectBuildTile(this,'red')"></div>
+        <div class="colorYellow" onclick="Player.selectBuildTile(this,'yellow')"></div>
+        <div class="colorCyan" onclick="Player.selectBuildTile(this,'cyan')"></div>
+      </div>
+    </div>
+  </body>
+</html>

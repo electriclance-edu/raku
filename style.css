@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+/*------------------------------------*/
+body {
+  width:100vw;
+  height:100vh;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+}
+p, h1, h2, h3 {
+  margin:0;
+  font-size:25px;
+  font-family:'Roboto', sans-serif;
+}
+/*------------------------------------*/
+.tiles {
+  position:absolute;
+  width:100vw;
+  height:70vh;
+  z-index:10;
+  font-size:0;
+  white-space:nowrap;
+}
+.tiles div {
+  background-color:rgb(0,0,0,0.1);
+  height:7vh;
+  width:7vh;
+  display:inline-block;
+  transition:0.2s background-color, 0.5s border-radius;
+}
+.tiles div:hover {
+  filter:invert(0.15);
+}
+.notifBox {
+  position:absolute;
+  top:20px;
+  left:20px;
+  z-index:30;
+}
+.notifBox p {
+  position:relative;
+  top:0px;
+  animation:1s fadeInSlideUp;
+}
+.tools {
+  position:absolute;
+  bottom:10px;
+  left:50%;
+  transform:translatex(-50%);
+  user-select:none;
+  text-align:center;
+  z-index:100;
+}
+.tools p {
+  margin-bottom:10px;
+  background-color:transparent;
+}
+.circleBox {
+  white-space:nowrap;
+}
+.circleBox div {
+  margin:5px;
+  width:40px;
+  height:40px;
+  border-radius:50px;
+  display:inline-block;
+  transition:0.3s;
+  box-sizing:border-box;
+}
+.selectedCircle, .circleBox div:hover {
+  margin:0 !important;
+  width:50px !important;
+  height:50px !important;
+}
+/*------------------------------------*/
+.borderWhite {
+  border:5px solid rgb(255,255,255);
+}
+.borderJet {
+  border:5px solid rgb(50,50,60);
+}
+.colorJet {
+  background-color:rgb(50,50,60);
+  color:rgb(50,50,60);
+}
+.colorRed {
+  background-color:rgb(230,55,55);
+  color:rgb(230,55,55);
+}
+.colorYellow {
+  background-color:rgb(240,205,95);
+  color:rgb(240,205,95);
+}
+.colorCyan {
+  background-color:rgb(35,230,205);
+  color:rgb(35,230,205);
+}
+.colorBlue {
+  background-color:rgb(15,150,245);
+  color:rgb(15,150,245);
+}
+.colorWhite {
+  background-color:rgb(255,255,255);
+  color:rgb(255,255,255);
+}
+/*------------------------------------*/
+@keyframes fadeInSlideUp {
+  from {
+    opacity:0;
+    top:10px;
+  }
+  to {
+    opacity:1;
+  }
+}

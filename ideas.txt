@@ -1,0 +1,7 @@
+---IDEAS---
+[GAMEPLAY MECHANIC]
+Farms (and other structures) aren't tiles, but instead multiblock structures.
+
+
+---PROBLEMS---
+1. replacing with air doesnt work

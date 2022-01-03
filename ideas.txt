@@ -1,7 +1,42 @@
 ---IDEAS---
 [GAMEPLAY MECHANIC]
-Farms (and other structures) aren't tiles, but instead multiblock structures.
-
+- Farms (and other structures) aren't tiles, but instead multiblock structures.
+[GAMEPLAY MECHANIC]
+- Research is done by exploring a Map of Knowledge. The level of research the player can do is dependent on the size of their Map.
+- The Map is a physical structure. A 1x1 map can be produced like:
+                            x  x  x
+                            x  o  x              (wherein x = SUSTAIN
+                            x  x  x              and o = MIND)
+A 1x1 map will be able to research only a Theory of Knowledge.
+- Theoretically, the amount of resources required to maintain a larger and larger Map is exponential.
+-
+[GAMEPLAY MECHANIC]
+- Libraries are formed by merging a STORAGE and MIND.
 
 ---PROBLEMS---
 1. replacing with air doesnt work
+
+
+
+---scrapped---
+<div class="textPopup">
+  <img src="images/ouroboros.png" alt="">
+  <h2>I find myself awake beneath unfamiliar skies,</h2>
+  <p>...and yet I do not even know what familiar means.
+  <br><br>
+    There is a gnawing emptiness clawing at the back of my mind, as if something precious had been ripped apart from my very being. Something inherently feels wrong with myself, with this world.
+    <br><br>
+    It may be best to first understand where exactly I am.
+  </p>
+  <br>
+  <p class="technicalText">CONNECTING TO DRONE FEED...</p>
+  <h2>A grand structure splits the sky in half.</h2>
+  <p>
+    As the clouds part across it's monolithic, featureless form, the drone feed suddenly cuts off. Something seems to be interfering with the center's capability to communicate with the device - something unnatural. <br>
+    <br>
+    It might be worth trying to send another drone to attempt to explore, though it'll probably disable the same way.
+  </p>
+</div>
+---RANDOM NOTES---
+1. cool art this doot
+https://dribbble.com/shots/6967686-Dots-cards-game

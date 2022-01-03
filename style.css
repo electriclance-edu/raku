@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@300&display=swap');
 /*------------------------------------*/
 body {
   width:100vw;
@@ -7,10 +7,22 @@ body {
   padding:0;
   overflow:hidden;
 }
-p, h1, h2, h3 {
+p, h1, h2, h3, span {
   margin:0;
-  font-size:25px;
+}
+h1, h2, h3 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight:normal;
+  font-size:28px;
+}
+p, span {
   font-family:'Roboto', sans-serif;
+  font-size:20px;
+}
+.technicalText {
+  font-family: 'Open Sans', sans-serif;
+  font-weight:normal;
+  font-size:15px;
 }
 /*------------------------------------*/
 .tiles {
@@ -23,19 +35,58 @@ p, h1, h2, h3 {
 }
 .tiles div {
   background-color:rgb(0,0,0,0.1);
-  height:7vh;
-  width:7vh;
+  height:5vh;
+  width:5vh;
   display:inline-block;
   transition:0.2s background-color, 0.5s border-radius;
 }
 .tiles div:hover {
   filter:invert(0.15);
 }
-.notifBox {
-  position:absolute;
+.resources {
+  position:fixed;
   top:20px;
   left:20px;
   z-index:30;
+  user-select:none;
+  transition:0.3s;
+}
+.resources div {
+  display:inline-block;
+}
+.resources .colorRed {
+  width:25px;
+  height:25px;
+  border-radius:25px;
+}
+.resources .colorGreen {
+  width:20px;
+  height:20px;
+  transform:rotate(45deg);
+  position:relative;
+  top:-3px;
+  margin-right:3px;
+}
+.resources .blueTriangle {
+	width:0;
+	height:0;
+  position:relative;
+  top:-1px;
+  border-right:14px solid transparent;
+	border-left:14px solid transparent;
+	border-bottom:25px solid rgb(15,150,245);
+  margin-right:-2px;
+}
+.resources span {
+  position:relative;
+  top:-5px;
+  margin-right:10px;
+}
+.resources:hover {
+  opacity:0.2;
+}
+.notifBox {
+  display:hidden;
 }
 .notifBox p {
   position:relative;
@@ -43,36 +94,50 @@ p, h1, h2, h3 {
   animation:1s fadeInSlideUp;
 }
 .tools {
-  position:absolute;
-  bottom:10px;
-  left:50%;
-  transform:translatex(-50%);
+  position:fixed;
+  bottom:8px;
+  left:10px;
   user-select:none;
-  text-align:center;
+  text-align:left;
   z-index:100;
+  pointer-events:none;
 }
 .tools p {
-  margin-bottom:10px;
+  margin:0 0 5px 10px;
   background-color:transparent;
 }
-.circleBox {
-  white-space:nowrap;
+.colorParent {
+  pointer-events:none;
 }
-.circleBox div {
-  margin:5px;
-  width:40px;
+.colorParent div {
   height:40px;
-  border-radius:50px;
+  width:40px;
+  border-radius:10000px;
+  margin:5px;
   display:inline-block;
   transition:0.3s;
   box-sizing:border-box;
+  position:relative;
+  pointer-events:all;
 }
-.selectedCircle, .circleBox div:hover {
+.selectedColor, .colorParent div:hover {
   margin:0 !important;
-  width:50px !important;
   height:50px !important;
+  width:50px !important;
+}
+.interpreter {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  z-index:200;
+  background-color:white;
+  padding:20px;
 }
 /*------------------------------------*/
+.hidden {
+  display:none;
+}
 .borderWhite {
   border:5px solid rgb(255,255,255);
 }
@@ -81,27 +146,31 @@ p, h1, h2, h3 {
 }
 .colorJet {
   background-color:rgb(50,50,60);
-  color:rgb(50,50,60);
 }
 .colorRed {
   background-color:rgb(230,55,55);
-  color:rgb(230,55,55);
 }
 .colorYellow {
   background-color:rgb(240,205,95);
-  color:rgb(240,205,95);
+}
+.colorGreen {
+  background-color:rgb(95,240,95);
 }
 .colorCyan {
   background-color:rgb(35,230,205);
-  color:rgb(35,230,205);
 }
 .colorBlue {
   background-color:rgb(15,150,245);
-  color:rgb(15,150,245);
+}
+.colorGlue {
+  background-color:rgb(240,95,165);
 }
 .colorWhite {
   background-color:rgb(255,255,255);
   color:rgb(255,255,255);
+}
+.colorDeath {
+  background-color:rgb(120,120,120);
 }
 /*------------------------------------*/
 @keyframes fadeInSlideUp {

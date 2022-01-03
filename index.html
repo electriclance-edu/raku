@@ -7,20 +7,38 @@
     <title>raku</title>
   </head>
   <body onload="onload()">
+    <div class="interpreter hidden">
+      <p class="technicalText">katarsis v13.37 - SENTIENCE INTERPRETER</p>
+      <hr>
+      <p class="technicalText">SKY:</p>
+      <p>unfamiliar</p>
+      <p class="technicalText">STATE:</p>
+      <p>confused</p>
+      <p class="technicalText">EYES:</p>
+      <p>closed</p>
+    </div>
     <div class="tiles" id="tiles">
+      <!--parent of all the tile blocks, filled up by generateTable()-->
+    </div>
+    <div class="resources">
+      <div class="colorRed"></div> <span>23</span>
+      <div class="colorGreen"></div> <span>20</span>
+      <div class="blueTriangle"></div> <span>20</span>
     </div>
     <div class="notifBox">
       <p>Hello.</p>
     </div>
     <div class="tools">
-      <p class="colorWhite">tesuto</p>
-      <div class="circleBox">
-        <div class="colorWhite borderJet" onclick="Player.selectBuildTile(this,'air')"></div>
+      <p class="colorWhite" id="toolName"></p>
+      <div class="colorParent" id="colorParent">
+        <div class="colorWhite" onclick="Player.selectBuildTile(this,'air')"></div>
         <div class="colorJet borderWhite" onclick="Player.selectBuildTile(this,'ground')"></div>
-        <div class="colorBlue" onclick="Player.selectBuildTile(this,'water')"></div>
-        <div class="colorRed" onclick="Player.selectBuildTile(this,'red')"></div>
-        <div class="colorYellow" onclick="Player.selectBuildTile(this,'yellow')"></div>
-        <div class="colorCyan" onclick="Player.selectBuildTile(this,'cyan')"></div>
+        <div class="colorBlue" onclick="Player.selectBuildTile(this,'sustain')"></div>
+        <div class="colorRed" onclick="Player.selectBuildTile(this,'gather')"></div>
+        <div class="colorGlue" onclick="Player.selectBuildTile(this,'glue')"></div>
+        <div class="colorYellow" onclick="Player.selectBuildTile(this,'storage')"></div>
+        <div class="colorCyan" onclick="Player.selectBuildTile(this,'mind')"></div>
+        <div class="colorDeath" onclick="Player.selectBuildTile(this,'break')"></div>
       </div>
     </div>
   </body>

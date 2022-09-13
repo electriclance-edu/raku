@@ -95,19 +95,19 @@ p, span {
 }
 .tools {
   position:fixed;
-  bottom:8px;
-  left:10px;
+  bottom:10px;
+  left:0;
   user-select:none;
   text-align:left;
   z-index:100;
   pointer-events:none;
+  background-color:rgb(50,50,60);
+  padding:10px 15px 7px 10px;
+  border-radius:0 1000px 1000px 0;
 }
 .tools p {
   margin:0 0 5px 10px;
   background-color:transparent;
-}
-.colorParent {
-  pointer-events:none;
 }
 .colorParent div {
   height:40px;

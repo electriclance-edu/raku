@@ -13,6 +13,7 @@ function onload() {
   Player.initialize();
   World.initialize();
   World.generateWorld();
+  generateColorSwatches();
 }
 class World {
   static initialize() {
@@ -90,42 +91,14 @@ class World {
       }
       this.worldData.push(row);
     }
+
     //set the ground
-    var groundHeight = Math.ceil(this.worldHeight * 0.3);
+    var groundHeight = Math.ceil(this.worldHeight * 0.2);
     for (var i = 0; i < groundHeight; i++) {
       var rowIndex = this.worldData.length - i - 1;
       for (var j = 0; j < this.worldData[rowIndex].length; j++) {
         this.worldData[rowIndex][j].type = "ground";
       }
-    }
-    //set the resources
-    var groundIndex = this.worldData.length - groundHeight;
-    var groundRow = this.worldData[groundIndex];
-
-    var resourceSpots = [];
-    var resourceSpotCount = Math.ceil(this.worldWidth / 15);
-    var resourceSpotWidth = Math.ceil(this.worldWidth / 5);
-    for (var i = 0; i < resourceSpotCount; i++) {
-      var resourceSeedIndex = randNum(groundRow.length - 1);
-      //generate resources around the resource seed, slightly random
-      for (var j = 0; j < resourceSpotWidth; j++) {
-        if (randNumFloat(1) - 1 < Player.currentWorld.richness) {
-          //columnrichness is the depth of the resource spot at one tile
-          var maxColumnRichness = Math.round(Math.pow(Player.currentWorld.richness + 1,3));
-          var currentColumnRichness = randNum(maxColumnRichness);
-          currentColumnRichness = clamp(currentColumnRichness,1,6);
-          var currentColumn = Math.round(clamp(resourceSeedIndex - resourceSpotWidth / 2 + j,0,this.worldWidth - 1));
-          for (var k = 0; k < currentColumnRichness; k++) {
-            this.worldData[groundIndex + k][currentColumn].resources = clamp(160 - (k * 30),20,160);
-          }
-        }
-      }
-    }
-    //set alien ruins
-    var ruinCount = 1; //Math.ceil(this.worldWidth / 20);
-    var aboveGroundRow = this.worldData[groundIndex - 1];
-    for (var i = 0; i < ruinCount; i++) {
-      aboveGroundRow[randNum(2 - 1)].type = "ruin";
     }
     World.displayWorld();
   }
@@ -134,18 +107,18 @@ class World {
     for (var i = 0; i < height; i++) {
       for (var j = 0; j < width; j++) {
         var tile = document.createElement("div");
-      tile.setAttribute("draggable",false);
-        tile.onclick = function() {
-          var element = this;
-          var indexOfChild = 0;
+        tile.setAttribute("draggable",false);
+          tile.onclick = function() {
+            var element = this;
+            var indexOfChild = 0;
 
-          //https://stackoverflow.com/questions/5913927/get-child-node-index
-          while((element = element.previousSibling) != null)
-            indexOfChild++;
+            //https://stackoverflow.com/questions/5913927/get-child-node-index
+            while((element = element.previousSibling) != null)
+              indexOfChild++;
 
-          World.editTile(indexOfChild,Player.currentTile);
-        };
-        world.appendChild(tile);
+            World.editTile(indexOfChild,Player.currentTile);
+          };
+          world.appendChild(tile);
       }
       var br = document.createElement("br");
       world.appendChild(br);
@@ -162,6 +135,7 @@ class World {
     }
   }
   static editTile(index,type) {
+    index += 2;
     if (type == undefined || type == "none") {
       return true;
     }
@@ -256,11 +230,9 @@ class Player {
 
       element.className += " selectedColor";
       this.currentTileElement = element;
-      document.getElementById("toolName").innerHTML = capitalize(tileType);
     } else {
       this.currentTileElement = undefined;
       this.currentTile = "none";
-      document.getElementById("toolName").innerHTML = "";
     }
   }
 }
@@ -283,19 +255,53 @@ function capitalize(string) {
   return string[0].toUpperCase() + string.substring(1,string.length);
 }
 
+function generateColorSwatches() {
+  var keys = Object.keys(Data.tileColors);
+
+  keys.forEach((key) => {
+    var elem = generateColorElem(key,Data.tileColors[key]);
+
+    if (key == "ground") {
+      elem.classList.add("borderWhite");
+    }
+    document.getElementById("colorParent").appendChild(elem);
+  });
+
+}
+function generateColorElem(name,color) {
+  var elem = document.createElement("div");
+  elem.style.backgroundColor = color;
+  elem.id = name;
+  elem.onclick = function() {
+    Player.selectBuildTile(this,this.id);
+  };
+
+  return elem;
+}
 
 var Data = {
   //colors that correspond for each tile
-  tileColors:{
-    ground:"rgb(50,50,60)",
-    sustain:"rgb(15,150,245)",
+  atileColors:{
     air:"rgb(255,255,255)",
+    ground:"rgb(50,50,60)",
+    cyan:"rgb(35,230,205)",
+    blue:"rgb(15,150,245)",
+    violet:"#783EFF",
+    red:"rgb(230,55,55)",
+    yellow:"rgb(240,205,95)",
+    grey:"rgb(120,120,120)",
     glue:"rgb(240,95,165)",
-    gather:"rgb(230,55,55)",
-    storage:"rgb(240,205,95)",
-    mind:"rgb(35,230,205)",
-    break:"rgb(120,120,120)",
-    resource:"rgb(140,225,120)",
+  },
+  tileColors:{
+    air:"rgb(255,255,255)",
+    ground:"#2d3142",
+    red:"#F7567C",
+    green:"rgb(35,230,205)",
+    dark_green:"#0B7A75",
+    blue:"#3772FF",
+    orange:"#FCA311",
+    neon_orange:"#FB4D3D",
+    dark_red:"#D90368",
   },
   //used by roundifyTile, denotes which corners (topleft, topright, bottomright, bottomleft) are on the top, right, bottom, and left of a square (eg. top - topleft and topright)
   touchingCorner:[

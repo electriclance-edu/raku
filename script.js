@@ -8,12 +8,23 @@ document.addEventListener("keypress", function(event) {
   }
 });
 
+var mouseDown;
 
 function onload() {
   Player.initialize();
   World.initialize();
   World.generateWorld();
   generateColorSwatches();
+  document.body.onmousedown = function(mouse) {
+    if (mouse.button == 0) {
+      mouseDown = true;
+    }
+  }
+  document.body.onmouseup = function(mouse) {
+    if (mouse.button == 0) {
+      mouseDown = false;
+    }
+  }
 }
 class World {
   static initialize() {
@@ -107,18 +118,39 @@ class World {
     for (var i = 0; i < height; i++) {
       for (var j = 0; j < width; j++) {
         var tile = document.createElement("div");
+        tile.addEventListener('dragstart', (e) => {
+          e.preventDefault()
+        })
+
+        tile.addEventListener('drop', (e) => {
+          e.preventDefault()
+        })
         tile.setAttribute("draggable",false);
-          tile.onclick = function() {
-            var element = this;
-            var indexOfChild = 0;
+        tile.onmousedown = function() {
+          var element = this;
+          var indexOfChild = 0;
 
-            //https://stackoverflow.com/questions/5913927/get-child-node-index
-            while((element = element.previousSibling) != null)
-              indexOfChild++;
+          //https://stackoverflow.com/questions/5913927/get-child-node-index
+          while((element = element.previousSibling) != null)
+            indexOfChild++;
 
-            World.editTile(indexOfChild,Player.currentTile);
-          };
-          world.appendChild(tile);
+          World.editTile(indexOfChild,Player.currentTile);
+        };
+        tile.onmouseover = function() {
+          if (!mouseDown) {
+            return;
+          }
+
+          var element = this;
+          var indexOfChild = 0;
+
+          //https://stackoverflow.com/questions/5913927/get-child-node-index
+          while((element = element.previousSibling) != null)
+            indexOfChild++;
+
+          World.editTile(indexOfChild,Player.currentTile);
+        };
+        world.appendChild(tile);
       }
       var br = document.createElement("br");
       world.appendChild(br);
@@ -295,13 +327,16 @@ var Data = {
   tileColors:{
     air:"rgb(255,255,255)",
     ground:"#2d3142",
-    red:"#F7567C",
     green:"rgb(35,230,205)",
     dark_green:"#0B7A75",
     blue:"#3772FF",
+    glue:"#FFEAD9",
     orange:"#FCA311",
     neon_orange:"#FB4D3D",
     dark_red:"#D90368",
+    maroon:"#932323",
+    purple:"#BA85F2",
+    // red:"#F7567C",
   },
   //used by roundifyTile, denotes which corners (topleft, topright, bottomright, bottomleft) are on the top, right, bottom, and left of a square (eg. top - topleft and topright)
   touchingCorner:[
